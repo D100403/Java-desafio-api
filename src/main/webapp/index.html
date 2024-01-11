@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<p>Pokemon</p>
+    <textarea id="dataTextArea"></textarea>
+    <br>
+    <button onclick="getData()">Obtener datos</button>
+    <p>Covid</p>
+    <textarea id="dataTextArea"></textarea>
+    <br>
+    <button onclick="getData()">Obtener datos</button>
+    <p>JSON</p>
+    <textarea id="dataTextArea"></textarea>
+    <br>
+    <button onclick="getData()">Obtener datos</button>
+
+    <script>
+        function getData() {
+            // Obtén el valor del área de texto
+            var inputData = document.getElementById("dataTextArea").value;
+
+            // Realiza la solicitud GET a tu controlador o servicio
+            fetch('jdbc:mysql://localhost:3306/apis?useSSL=false' + inputData)
+                .then(response => response.json())
+                .then(data => {
+                    // Haz algo con los datos recibidos, por ejemplo, mostrarlos en la consola
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error al obtener datos:', error);
+                });
+        }
+    </script>
+
+</body>
+</html>
